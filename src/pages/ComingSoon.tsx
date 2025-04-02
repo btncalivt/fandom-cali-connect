@@ -62,7 +62,7 @@ const ComingSoon = () => {
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: "url('/lovable-uploads/92e364ee-211c-494c-b8c6-0321da215f4e.png')",
+          backgroundImage: "url('/lovable-uploads/1141502a-8397-4664-b8e1-1230fbbfb900.png')",
           backgroundSize: 'cover',
           filter: 'brightness(0.85)'
         }}
@@ -80,7 +80,7 @@ const ComingSoon = () => {
         <div className="glass p-6 rounded-xl md:p-8 max-w-lg mx-auto backdrop-blur-md bg-black/20 border border-white/10">
           <h2 className="text-2xl md:text-3xl font-semibold mb-3">Coming Soon</h2>
           <p className="text-lg mb-8 text-white/90">
-            The official fan site for Cali from Be The Next Dreamer is under construction. Stay tuned!
+            The official fan site for Be The NEXT Dreamer: Cali. Stay tuned!
           </p>
           
           {/* Social Media Icons */}
