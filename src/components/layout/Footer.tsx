@@ -14,16 +14,40 @@ const Footer = () => {
               The dedicated fandom supporting Cali from Be The Next Dreamer. Join us in his journey to success!
             </p>
             <div className="flex space-x-4 mt-2">
-              <a href="#" aria-label="Facebook" className="text-gray-300 hover:text-btn transition-colors">
+              <a 
+                href="https://www.facebook.com/BTNCaliOfficial/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Facebook" 
+                className="text-gray-300 hover:text-btn transition-colors"
+              >
                 <Facebook size={20} />
               </a>
-              <a href="#" aria-label="Instagram" className="text-gray-300 hover:text-btn transition-colors">
+              <a 
+                href="https://www.instagram.com/btncaliofficial" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Instagram" 
+                className="text-gray-300 hover:text-btn transition-colors"
+              >
                 <Instagram size={20} />
               </a>
-              <a href="#" aria-label="Twitter" className="text-gray-300 hover:text-btn transition-colors">
+              <a 
+                href="https://x.com/btncaliofficial" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Twitter" 
+                className="text-gray-300 hover:text-btn transition-colors"
+              >
                 <Twitter size={20} />
               </a>
-              <a href="#" aria-label="YouTube" className="text-gray-300 hover:text-btn transition-colors">
+              <a 
+                href="http://www.youtube.com/@BTNCaliOfficial" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="YouTube" 
+                className="text-gray-300 hover:text-btn transition-colors"
+              >
                 <Youtube size={20} />
               </a>
             </div>
@@ -45,10 +69,10 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Resources</h3>
             <ul className="space-y-2">
-              <li><Link to="/voting-team" className="text-gray-300 hover:text-white transition-colors">How to Vote</Link></li>
-              <li><Link to="/merch" className="text-gray-300 hover:text-white transition-colors">Merch Store</Link></li>
+              <li><a href="https://rebrand.ly/BTNCaliDreamKeepers" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">Join Voting Team</a></li>
+              <li><Link to="/giveaways" className="text-gray-300 hover:text-white transition-colors">Giveaways</Link></li>
               <li><Link to="/contact" className="text-gray-300 hover:text-white transition-colors">Contact Us</Link></li>
-              <li><a href="#join-community" className="text-gray-300 hover:text-white transition-colors">Join Community</a></li>
+              <li><a href="https://www.facebook.com/share/g/14pqQ31ae5/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">Join Community</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
             </ul>
           </div>

@@ -30,7 +30,7 @@ const Navbar = () => {
     { name: 'Voting Team', path: '/voting-team' },
     { name: 'Social Hub', path: '/social-hub' },
     { name: 'Fan Zone', path: '/fan-zone' },
-    { name: 'Merch', path: '/merch' },
+    { name: 'Giveaways', path: '/giveaways' },
     { name: 'Contact', path: '/contact' },
   ];
   
@@ -84,13 +84,15 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Link 
-              to="#join-community" 
-              className="btn-primary text-center mt-2"
+            <a 
+              href="https://www.facebook.com/share/g/14pqQ31ae5/"
+              className="btn-primary text-center mt-2" 
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
             >
               Join Community
-            </Link>
+            </a>
           </div>
         </div>
       )}

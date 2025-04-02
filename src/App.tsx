@@ -12,7 +12,7 @@ import VotingTeam from "./pages/VotingTeam";
 import SocialHub from "./pages/SocialHub";
 import FanZone from "./pages/FanZone";
 import Contact from "./pages/Contact";
-import MerchStore from "./pages/MerchStore";
+import Giveaways from "./pages/Giveaways";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,7 +33,7 @@ const App = () => (
               <Route path="/social-hub" element={<SocialHub />} />
               <Route path="/fan-zone" element={<FanZone />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/merch" element={<MerchStore />} />
+              <Route path="/giveaways" element={<Giveaways />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
