@@ -99,4 +99,12 @@
   .card-hover {
     @apply hover:shadow-lg transition-all duration-300 hover:-translate-y-1;
   }
+  
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-lg;
+  }
 }
