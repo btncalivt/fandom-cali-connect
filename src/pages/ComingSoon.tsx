@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Button } from "@/components/ui/button";
 
 const socialLinks = [
   {
@@ -58,11 +59,11 @@ const ComingSoon = () => {
   
   return (
     <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center">
-      {/* Background Image */}
+      {/* Background Image with direct URL */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: "url('/lovable-uploads/1141502a-8397-4664-b8e1-1230fbbfb900.png')",
+          backgroundImage: "url(/lovable-uploads/1141502a-8397-4664-b8e1-1230fbbfb900.png)",
           backgroundSize: 'cover',
           filter: 'brightness(0.85)'
         }}
@@ -97,6 +98,22 @@ const ComingSoon = () => {
                 {link.icon}
               </a>
             ))}
+          </div>
+          
+          {/* Vote Button */}
+          <div className="mt-6 mb-4">
+            <a 
+              href="https://vote.btncaliofficial.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button 
+                variant="default" 
+                className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-lg py-6 px-10 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg"
+              >
+                VOTE
+              </Button>
+            </a>
           </div>
           
           <div className="text-sm text-white/70 mt-8">
