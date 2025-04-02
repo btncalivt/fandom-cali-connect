@@ -10,7 +10,7 @@ const FanZone = () => {
   const tabs = [
     { name: 'Fan Forum', icon: <MessageSquare className="w-5 h-5" /> },
     { name: 'Stories', icon: <FileEdit className="w-5 h-5" /> },
-    { name: 'Fan Art', icon: <PictureInPipture className="w-5 h-5" /> },
+    { name: 'Fan Art', icon: <PictureInPicture className="w-5 h-5" /> },
     { name: 'Leaderboard', icon: <Trophy className="w-5 h-5" /> }
   ];
   
