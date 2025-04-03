@@ -63,7 +63,7 @@ const ComingSoon = () => {
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: "url(/lovable-uploads/1141502a-8397-4664-b8e1-1230fbbfb900.png)",
+          backgroundImage: "url(/lovable-uploads/2eeb1456-39be-4a26-95a3-ff2518f85123.png)",
           backgroundSize: 'cover',
           filter: 'brightness(0.85)'
         }}
@@ -100,7 +100,11 @@ const ComingSoon = () => {
             ))}
           </div>
           
-          {/* Vote Button */}
+          <div className="text-sm text-white/70 mt-8 mb-6">
+            Follow us on social media for updates
+          </div>
+          
+          {/* Vote Button (moved after text) */}
           <div className="mt-6 mb-4">
             <a 
               href="https://vote.btncaliofficial.com" 
@@ -114,10 +118,6 @@ const ComingSoon = () => {
                 VOTE
               </Button>
             </a>
-          </div>
-          
-          <div className="text-sm text-white/70 mt-8">
-            Follow us on social media for updates
           </div>
         </div>
       </div>

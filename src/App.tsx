@@ -17,7 +17,7 @@ import NotFound from "./pages/NotFound";
 import ComingSoon from "./pages/ComingSoon";
 
 // Set this to false to enable the coming soon page, true to show the full site
-const SITE_LIVE = false;
+const SITE_LIVE = true;
 
 const queryClient = new QueryClient();
 
