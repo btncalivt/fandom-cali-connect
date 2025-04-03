@@ -1,8 +1,10 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from '../ui/ThemeToggle';
+
+// Set this to true when ready to make the Giveaways page live (match App.tsx)
+const GIVEAWAYS_LIVE = false;
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +32,7 @@ const Navbar = () => {
     { name: 'Voting Team', path: '/voting-team' },
     { name: 'Social Hub', path: '/social-hub' },
     { name: 'Fan Zone', path: '/fan-zone' },
-    { name: 'Giveaways', path: '/giveaways' },
+    ...(GIVEAWAYS_LIVE ? [{ name: 'Giveaways', path: '/giveaways' }] : []),
     { name: 'Contact', path: '/contact' },
   ];
   

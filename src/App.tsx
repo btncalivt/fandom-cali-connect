@@ -19,6 +19,9 @@ import ComingSoon from "./pages/ComingSoon";
 // Set this to false to enable the coming soon page, true to show the full site
 const SITE_LIVE = true;
 
+// Set this to true when ready to make the Giveaways page live
+const GIVEAWAYS_LIVE = false;
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -38,7 +41,11 @@ const App = () => (
                 <Route path="/social-hub" element={<SocialHub />} />
                 <Route path="/fan-zone" element={<FanZone />} />
                 <Route path="/contact" element={<Contact />} />
-                <Route path="/giveaways" element={<Giveaways />} />
+                {GIVEAWAYS_LIVE ? (
+                  <Route path="/giveaways" element={<Giveaways />} />
+                ) : (
+                  <Route path="/giveaways" element={<Navigate to="/" replace />} />
+                )}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>

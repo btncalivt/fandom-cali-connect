@@ -1,6 +1,8 @@
-
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Twitter, Youtube, Send } from 'lucide-react';
+
+// Set this to true when ready to make the Giveaways page live (match App.tsx)
+const GIVEAWAYS_LIVE = false;
 
 const Footer = () => {
   return (
@@ -70,7 +72,9 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Resources</h3>
             <ul className="space-y-2">
               <li><a href="https://rebrand.ly/BTNCaliDreamKeepers" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">Join Voting Team</a></li>
-              <li><Link to="/giveaways" className="text-gray-300 hover:text-white transition-colors">Giveaways</Link></li>
+              {GIVEAWAYS_LIVE && (
+                <li><Link to="/giveaways" className="text-gray-300 hover:text-white transition-colors">Giveaways</Link></li>
+              )}
               <li><Link to="/contact" className="text-gray-300 hover:text-white transition-colors">Contact Us</Link></li>
               <li><a href="https://www.facebook.com/share/g/14pqQ31ae5/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">Join Community</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>

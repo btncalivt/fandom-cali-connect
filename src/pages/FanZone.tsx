@@ -1,11 +1,33 @@
-
 import { useState } from 'react';
-import { MessageSquare, FileEdit, PictureInPicture, Trophy, Heart, ThumbsUp, Share2, Music } from 'lucide-react';
+import { MessageSquare, FileEdit, PictureInPicture, Trophy, Heart, ThumbsUp, Share2, Music, ExternalLink } from 'lucide-react';
 
 const FanZone = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [pollOption, setPollOption] = useState<number | null>(null);
-  const [pollResults, setPollResults] = useState([42, 28, 18, 12]);
+  const [pollResults, setPollResults] = useState([35, 22, 18, 15, 10]);
+  
+  const episodeHighlights = [
+    { 
+      episode: 'Episode 5', 
+      link: 'https://youtu.be/TxNQOlIgwKA?si=lrb8Pov23sq96xcz' 
+    },
+    { 
+      episode: 'Episode 6', 
+      link: 'https://youtu.be/K4bQcn2Cstk?si=Y0kp3y0kk6U-AeSD' 
+    },
+    { 
+      episode: 'Episode 7', 
+      link: 'https://youtu.be/-_199qgbDNs?si=u5R6ZdNAeYFqHuc0' 
+    },
+    { 
+      episode: 'Episode 15', 
+      link: 'https://youtu.be/SinQ2oem8xo?si=Ne6PlHo24Q3NAaHi' 
+    },
+    { 
+      episode: 'Episode 16', 
+      link: 'https://youtu.be/smcLDR8Tfes?si=uLSvxG_lmd-ru0sM' 
+    }
+  ];
   
   const tabs = [
     { name: 'Fan Forum', icon: <MessageSquare className="w-5 h-5" /> },
@@ -26,6 +48,10 @@ const FanZone = () => {
   const getPercentage = (value: number) => {
     const total = pollResults.reduce((acc, curr) => acc + curr, 0);
     return Math.round((value / total) * 100);
+  };
+  
+  const openHighlightLink = (link: string) => {
+    window.open(link, '_blank', 'noopener,noreferrer');
   };
   
   return (
@@ -92,21 +118,32 @@ const FanZone = () => {
               <h2 className="text-2xl font-bold mb-6">Weekly Poll</h2>
               
               <div className="mb-4">
-                <h3 className="text-lg font-medium mb-2">What's your favorite Cali performance so far?</h3>
+                <h3 className="text-lg font-medium mb-4">What's your favorite Cali Highlights so far?</h3>
                 
                 <div className="space-y-3">
-                  {['Dance Break Performance (Ep.2)', 'Vocal Challenge (Ep.4)', 'Team Battle (Ep.6)', 'Solo Stage (Ep.7)'].map((option, index) => (
+                  {episodeHighlights.map((item, index) => (
                     <div key={index} className="relative">
                       <button
                         className={`w-full text-left p-3 rounded-lg border transition-all ${
                           pollOption === index
                             ? 'border-btn bg-blue-50 dark:bg-blue-900/20'
                             : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
-                        } ${pollOption !== null ? 'cursor-default' : 'cursor-pointer'}`}
+                        } ${pollOption !== null ? 'cursor-default' : 'cursor-pointer'} flex justify-between items-center`}
                         onClick={() => handleVote(index)}
                         disabled={pollOption !== null}
                       >
-                        {option}
+                        <span>{item.episode}</span>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openHighlightLink(item.link);
+                          }}
+                          className="text-btn hover:text-btn-hover flex items-center gap-1 p-1 rounded"
+                          aria-label={`Watch ${item.episode} highlights`}
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          <span className="text-sm">Watch</span>
+                        </button>
                       </button>
                       
                       {pollOption !== null && (
@@ -116,8 +153,21 @@ const FanZone = () => {
                             style={{ width: `${getPercentage(pollResults[index])}%` }}
                           />
                           <div className="absolute inset-0 flex items-center justify-between px-3">
-                            <span>{option}</span>
-                            <span className="font-medium">{getPercentage(pollResults[index])}%</span>
+                            <span>{item.episode}</span>
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  openHighlightLink(item.link);
+                                }}
+                                className="text-btn hover:text-btn-hover flex items-center gap-1 p-1 rounded pointer-events-auto z-10"
+                                aria-label={`Watch ${item.episode} highlights`}
+                              >
+                                <ExternalLink className="w-4 h-4" />
+                                <span className="text-sm">Watch</span>
+                              </button>
+                              <span className="font-medium">{getPercentage(pollResults[index])}%</span>
+                            </div>
                           </div>
                         </div>
                       )}
