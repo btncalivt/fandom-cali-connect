@@ -51,10 +51,10 @@ const Features = () => {
         </div>
         
         <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold mb-6">Be Part of Cali's Journey</h3>
+          <h3 className="text-2xl font-bold mb-6">Vote and Be Part of Cali's Journey</h3>
           <iframe 
             className="w-full max-w-3xl h-64 md:h-96 mx-auto rounded-xl shadow-lg"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            src="https://www.youtube.com/embed/DuLQHNkIe8U" 
             title="Cali Highlights"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowFullScreen

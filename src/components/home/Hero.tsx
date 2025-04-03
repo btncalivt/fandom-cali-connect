@@ -13,21 +13,21 @@ const Hero = () => {
           </h1>
           
           <p className="text-gray-700 dark:text-gray-300 text-lg mb-8 max-w-xl mx-auto lg:mx-0">
-            Join the dedicated fandom supporting Cali on his journey through Be The Next Dreamer. Together we can make his dreams come true!
+            Join the dedicated fandom supporting Cali on his journey through Be The Next: 9 Dreamers. Together we can make his debut dreams come true!
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Link to="/voting-team" className="btn-primary">
               Join Voting Team
             </Link>
-            <a href="#join-community" className="btn-secondary">
+            <a href="https://www.facebook.com/share/g/14pqQ31ae5/" className="btn-secondary">
               Join Community
             </a>
           </div>
           
           <div className="mt-10">
             <p className="text-gray-600 dark:text-gray-400 mb-3 text-sm font-medium">NEXT EPISODE COUNTDOWN</p>
-            <Countdown targetDate="2023-12-15T20:00:00" />
+            <Countdown targetDate="2025-04-05T20:30:00+08:00" />
           </div>
         </div>
         
