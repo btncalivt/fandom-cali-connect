@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState, useEffect, useRef } from "react";
-import { Calendar, Info, Award, Clock, Users, Star, Mail, Music, Pause, Play } from "lucide-react";
+import { Calendar, Info, Award, Clock, Users, Star, Mail, Pause, Play, Music } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -105,12 +105,35 @@ Thank you for sharing your dreams with your fans. Thank you for never giving up.
 Lezz gaur and fightinggg!! 💜
 — Admin Kim`;
 
+  // Updated to make sure audio plays on interaction
   const handleMessageOpen = () => {
     if (!isShowingMessage) {
       setIsShowingMessage(true);
       setTimeout(() => {
         setIsTyping(true);
       }, 500);
+      
+      // Play audio when message is opened
+      playAudio();
+    }
+  };
+
+  // New function to handle audio playback
+  const playAudio = () => {
+    if (audioRef.current && !isPlaying) {
+      audioRef.current.volume = 0.3;
+      audioRef.current.play()
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch(error => {
+          console.error("Audio playback error:", error);
+          toast({
+            title: "Playback Error",
+            description: "Please click the play button to enable audio playback.",
+            variant: "destructive",
+          });
+        });
     }
   };
 
@@ -118,37 +141,16 @@ Lezz gaur and fightinggg!! 💜
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
+        setIsPlaying(false);
       } else {
-        audioRef.current.volume = 0.3;
-        audioRef.current.play().catch(error => {
-          toast({
-            title: "Playback Error",
-            description: "Please interact with the page first to enable audio playback.",
-            variant: "destructive",
-          });
-        });
+        playAudio();
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
   useEffect(() => {
-    // Attempt to play audio when Sunday tab is selected
-    if (selectedDay === 6 && audioRef.current && !isPlaying) {
-      // Need to wait for user interaction before playing due to browser policies
-      const attemptPlay = () => {
-        if (audioRef.current) {
-          audioRef.current.volume = 0.3;
-          audioRef.current.play().catch(() => {
-            // Silent catch - we'll let the user use the play button if autoplay fails
-          });
-          setIsPlaying(true);
-        }
-      };
-      
-      // Try to play, but browser might block it
-      attemptPlay();
-    } else if (selectedDay !== 6 && audioRef.current && isPlaying) {
+    // We won't try to autoplay here anymore - will rely on user interaction
+    if (selectedDay !== 6 && audioRef.current && isPlaying) {
       audioRef.current.pause();
       setIsPlaying(false);
     }
