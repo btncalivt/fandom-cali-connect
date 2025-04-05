@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState, useEffect, useRef } from "react";
 import { Calendar, Info, Award, Clock, Users, Star, Mail, Music, Pause, Play } from "lucide-react";
@@ -85,7 +86,7 @@ const DailyDoseOfCali = () => {
   
   const [selectedDay, setSelectedDay] = useState(dayIndex);
   
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [isShowingMessage, setIsShowingMessage] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -104,12 +105,12 @@ Thank you for sharing your dreams with your fans. Thank you for never giving up.
 Lezz gaur and fightinggg!! 💜
 — Admin Kim`;
 
-  const handleEnvelopeClick = () => {
-    if (!isFlipped) {
-      setIsFlipped(true);
+  const handleMessageOpen = () => {
+    if (!isShowingMessage) {
+      setIsShowingMessage(true);
       setTimeout(() => {
         setIsTyping(true);
-      }, 1000);
+      }, 500);
     }
   };
 
@@ -132,14 +133,30 @@ Lezz gaur and fightinggg!! 💜
   };
 
   useEffect(() => {
+    // Attempt to play audio when Sunday tab is selected
     if (selectedDay === 6 && audioRef.current && !isPlaying) {
-      audioRef.current.volume = 0.3;
-      audioRef.current.play().catch(error => {
-      });
-      setIsPlaying(true);
+      // Need to wait for user interaction before playing due to browser policies
+      const attemptPlay = () => {
+        if (audioRef.current) {
+          audioRef.current.volume = 0.3;
+          audioRef.current.play().catch(() => {
+            // Silent catch - we'll let the user use the play button if autoplay fails
+          });
+          setIsPlaying(true);
+        }
+      };
+      
+      // Try to play, but browser might block it
+      attemptPlay();
     } else if (selectedDay !== 6 && audioRef.current && isPlaying) {
       audioRef.current.pause();
       setIsPlaying(false);
+    }
+    
+    // Reset message state when changing days
+    if (selectedDay !== 6) {
+      setIsShowingMessage(false);
+      setIsTyping(false);
     }
   }, [selectedDay]);
 
@@ -152,7 +169,7 @@ Lezz gaur and fightinggg!! 💜
               variant="ghost" 
               size="sm" 
               onClick={toggleMusic}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 text-primary hover:text-primary-foreground hover:bg-primary/90"
             >
               {isPlaying ? <Pause size={16} /> : <Play size={16} />}
               <Music size={16} />
@@ -166,42 +183,49 @@ Lezz gaur and fightinggg!! 💜
             loop
           />
           
-          <div className="flex justify-center perspective-[1000px]">
+          {!isShowingMessage ? (
             <div 
-              className={`relative w-full max-w-2xl transition-all duration-1000 transform-style-3d cursor-pointer ${
-                isFlipped ? "rotate-x-180" : ""
-              }`}
-              style={{ height: isFlipped ? "500px" : "250px" }}
+              onClick={handleMessageOpen}
+              className="cursor-pointer transition-all duration-300 hover:shadow-md group"
             >
-              <div 
-                className={`absolute inset-0 backface-hidden bg-gradient-to-br from-purple-100 to-purple-200 shadow-lg rounded-lg flex flex-col items-center justify-center p-6 border-2 border-purple-300 ${
-                  isFlipped ? "invisible" : ""
-                }`}
-                onClick={handleEnvelopeClick}
-              >
-                <Mail className="h-16 w-16 text-purple-500 mb-4" />
-                <h3 className="text-xl font-bold text-center text-purple-700">Sunday Message for Cali</h3>
-                <p className="text-sm text-purple-600 mt-2 text-center">Click to open</p>
-                <div className="absolute top-0 right-0 w-20 h-20 bg-purple-300 skew-y-[45deg] transform origin-top-right"></div>
+              <div className="bg-gradient-to-r from-primary/10 to-primary/20 rounded-lg p-6 flex items-center gap-4">
+                <div className="bg-primary/90 text-primary-foreground rounded-full p-3 shadow-lg">
+                  <Mail className="h-6 w-6" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-primary">Sunday Message for Cali</h3>
+                  <p className="text-muted-foreground">Click to read this week's featured message</p>
+                </div>
+                <div className="bg-primary/5 rounded-full p-2 transition-transform group-hover:translate-x-1">
+                  <Play className="h-5 w-5 text-primary" />
+                </div>
               </div>
-              
-              <div 
-                className="absolute inset-0 backface-hidden rotate-x-180 bg-white shadow-lg rounded-lg p-8 overflow-y-auto"
-              >
-                <div className="max-h-[450px] prose prose-sm overflow-y-auto">
+            </div>
+          ) : (
+            <div className="transition-all animate-fade-in">
+              <div className="bg-card rounded-lg shadow-sm border p-6 max-h-[500px] overflow-y-auto">
+                <div className="mb-3 pb-2 border-b flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <div className="h-3 w-3 rounded-full bg-primary"></div>
+                    <div className="text-sm font-medium">Featured Message</div>
+                  </div>
+                  <div className="text-xs text-muted-foreground">Today</div>
+                </div>
+                
+                <div className="prose prose-sm max-w-none">
                   {isTyping ? (
-                    <div className="font-handwritten text-gray-800 leading-relaxed">
+                    <div className="font-handwritten text-foreground leading-relaxed">
                       <TypeWriter text={fanMessage} />
                     </div>
                   ) : (
-                    <div className="flex justify-center items-center h-full">
+                    <div className="flex justify-center items-center h-32">
                       <div className="animate-pulse">Loading message...</div>
                     </div>
                   )}
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       );
     }
