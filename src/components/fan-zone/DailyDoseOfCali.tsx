@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState, useEffect, useRef } from "react";
 import { Calendar, Info, Award, Clock, Users, Star, Mail, Pause, Play, Music } from "lucide-react";
@@ -181,7 +180,7 @@ Lezz gaur and fightinggg!! 💜
           
           <audio 
             ref={audioRef} 
-            src="https://www.youtube.com/audio/yt:pv1UkRXo84U"
+            src="/sunday_inbox.mp3"
             loop
           />
           
