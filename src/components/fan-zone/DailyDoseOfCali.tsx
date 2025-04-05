@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState, useEffect, useRef } from "react";
 import { Calendar, Info, Award, Clock, Users, Star, Mail, Music, Pause, Play } from "lucide-react";
@@ -81,14 +80,11 @@ const days = [
 ];
 
 const DailyDoseOfCali = () => {
-  // Get the current day of the week (0 = Sunday, 1 = Monday, etc.)
   const today = new Date().getDay();
-  // Convert to our array index (where Monday is 0)
   const dayIndex = today === 0 ? 6 : today - 1;
   
   const [selectedDay, setSelectedDay] = useState(dayIndex);
   
-  // Sunday Inbox specific state
   const [isFlipped, setIsFlipped] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -113,7 +109,7 @@ Lezz gaur and fightinggg!! 💜
       setIsFlipped(true);
       setTimeout(() => {
         setIsTyping(true);
-      }, 1000); // Start typing after the envelope is fully open
+      }, 1000);
     }
   };
 
@@ -122,7 +118,7 @@ Lezz gaur and fightinggg!! 💜
       if (isPlaying) {
         audioRef.current.pause();
       } else {
-        audioRef.current.volume = 0.3; // Lower volume for background music
+        audioRef.current.volume = 0.3;
         audioRef.current.play().catch(error => {
           toast({
             title: "Playback Error",
@@ -134,13 +130,23 @@ Lezz gaur and fightinggg!! 💜
       setIsPlaying(!isPlaying);
     }
   };
-  
+
+  useEffect(() => {
+    if (selectedDay === 6 && audioRef.current && !isPlaying) {
+      audioRef.current.volume = 0.3;
+      audioRef.current.play().catch(error => {
+      });
+      setIsPlaying(true);
+    } else if (selectedDay !== 6 && audioRef.current && isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    }
+  }, [selectedDay]);
+
   const renderDayContent = () => {
     if (selectedDay === 6) {
-      // Sunday Inbox content
       return (
         <div className="py-4">
-          {/* Audio control */}
           <div className="flex justify-end mb-4">
             <Button 
               variant="ghost" 
@@ -154,10 +160,9 @@ Lezz gaur and fightinggg!! 💜
             </Button>
           </div>
           
-          {/* Hidden audio element */}
           <audio 
             ref={audioRef} 
-            src="https://cdn.pixabay.com/download/audio/2021/11/25/audio_cb15d9640d.mp3?filename=relaxing-135575.mp3"
+            src="https://www.youtube.com/audio/yt:pv1UkRXo84U"
             loop
           />
           
@@ -168,7 +173,6 @@ Lezz gaur and fightinggg!! 💜
               }`}
               style={{ height: isFlipped ? "500px" : "250px" }}
             >
-              {/* Front of envelope */}
               <div 
                 className={`absolute inset-0 backface-hidden bg-gradient-to-br from-purple-100 to-purple-200 shadow-lg rounded-lg flex flex-col items-center justify-center p-6 border-2 border-purple-300 ${
                   isFlipped ? "invisible" : ""
@@ -181,7 +185,6 @@ Lezz gaur and fightinggg!! 💜
                 <div className="absolute top-0 right-0 w-20 h-20 bg-purple-300 skew-y-[45deg] transform origin-top-right"></div>
               </div>
               
-              {/* Back of envelope (message) */}
               <div 
                 className="absolute inset-0 backface-hidden rotate-x-180 bg-white shadow-lg rounded-lg p-8 overflow-y-auto"
               >
@@ -203,7 +206,6 @@ Lezz gaur and fightinggg!! 💜
       );
     }
 
-    // Regular content for other days
     if (days[selectedDay].content) {
       return (
         <div className="flex justify-center">
@@ -234,7 +236,7 @@ Lezz gaur and fightinggg!! 💜
       </p>
     );
   };
-  
+
   return (
     <Card className="mb-8 shadow-md hover:shadow-lg transition-shadow duration-300">
       <CardHeader className="pb-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-t-lg">
