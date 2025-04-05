@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -28,10 +29,11 @@ const Navbar = () => {
   
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
     { name: 'Voting Team', path: '/voting-team' },
     { name: 'Social Hub', path: '/social-hub' },
+    { name: 'Spotlight', path: '/spotlight' },
     { name: 'Fan Zone', path: '/fan-zone' },
+    { name: 'About', path: '/about' },
     ...(GIVEAWAYS_LIVE ? [{ name: 'Giveaways', path: '/giveaways' }] : []),
     { name: 'Contact', path: '/contact' },
   ];
