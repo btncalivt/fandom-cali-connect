@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import FanInteractionDisplay from '@/components/fan-zone/FanInteractionDisplay';
 import DailyDoseOfCali from '@/components/fan-zone/DailyDoseOfCali';
 import DreamKeepersLeaderboard from '@/components/fan-zone/DreamKeepersLeaderboard';
+import SundayInbox from '@/components/fan-zone/SundayInbox';
 
 const FanZone = () => {
   return (
@@ -16,6 +17,7 @@ const FanZone = () => {
         
         <div className="max-w-4xl mx-auto mb-12">
           <DailyDoseOfCali />
+          <SundayInbox />
           <DreamKeepersLeaderboard />
         </div>
         
